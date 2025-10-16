@@ -1,6 +1,9 @@
 package com.example.auth.config;
 
 import com.example.auth.jwt.JwtTokenProvider;
+import com.example.auth.oauth.CustomOAuth2UserService;
+import com.example.auth.oauth.OAuth2SuccessHandler;
+import com.example.auth.repository.UserRepository;
 import com.example.auth.security.JwtAuthenticationFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -21,27 +24,41 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class SecurityConfig {
 
     /* 필터 체인에 JWT 필터 적용, 인증/인가 처리 */
 
     private final JwtTokenProvider jwtTokenProvider;
+    private final UserRepository userRepository;
+    private final CustomOAuth2UserService customOAuth2UserService;
+    private final OAuth2SuccessHandler oAuth2SuccessHandler;
+
+    public SecurityConfig(JwtTokenProvider jwtTokenProvider,
+                          UserRepository userRepository,
+                          CustomOAuth2UserService customOAuth2UserService,
+                          OAuth2SuccessHandler oAuth2SuccessHandler) {
+        this.jwtTokenProvider = jwtTokenProvider;
+        this.userRepository = userRepository;
+        this.customOAuth2UserService = customOAuth2UserService;
+        this.oAuth2SuccessHandler = oAuth2SuccessHandler;
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .formLogin(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**", "/oauth2/**", "/h2-console/**").permitAll()
-                .anyRequest().authenticated()
+                    .requestMatchers("/api/auth/**", "/oauth2/**", "/h2-console/**").permitAll()
+                    .anyRequest().authenticated()
             )
             .headers(headers -> headers.frameOptions().disable())
             .oauth2Login(oauth -> oauth
-                .defaultSuccessUrl("/oauth2/success") // handled by custom handler if needed
+                    .userInfoEndpoint(u -> u.userService(customOAuth2UserService))
+                    .successHandler(oAuth2SuccessHandler)
             )
-            .formLogin(AbstractHttpConfigurer::disable)
             .exceptionHandling(ex -> ex
                     .authenticationEntryPoint((request, response, authException) -> {
                         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -55,7 +72,7 @@ public class SecurityConfig {
                     })
             );
 
-        http.addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, userRepository), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

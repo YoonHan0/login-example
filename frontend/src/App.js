@@ -11,6 +11,16 @@ function App() {
     if (access) localStorage.setItem('access', access);
     if (refresh) localStorage.setItem('refresh', refresh);
   }, []);
+
+  const handleSocialLogin = (flag) => {
+    if(flag === 'google') {
+      window.location.href = '/oauth2/authorization/google';    // http://localhost:8080/oauth2/authorization/google, 개발 서버 proxy가 http://localhost:8080로 되어 있다면 상대 주소 그대로 동작
+    }
+    else {
+      window.location.href = "/oauth2/authorization/kakao"
+    }
+    
+  };
   
   return (
     <div style={{padding:20}}>
@@ -20,9 +30,9 @@ function App() {
       <LoginForm />
       <hr />
       <div>
-        <a href="/oauth2/authorization/google">Login with Google</a>
+        <button onClick={handleSocialLogin}>Login with Google</button>
         <br/>
-        <a href="/oauth2/authorization/kakao">Login with Kakao</a>
+        <button onClick={handleSocialLogin}>Login with KaKao</button>
       </div>
     </div>
   );

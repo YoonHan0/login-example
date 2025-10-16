@@ -25,16 +25,30 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
-        OAuth2User oauthUser = (OAuth2User) authentication.getPrincipal();
-        Map<String, Object> attr = oauthUser.getAttributes();
 
-        // Extract email depending on provider structure
+        OAuth2User oauthUser = (OAuth2User) authentication.getPrincipal();
+        Map<String, Object> attributes = oauthUser.getAttributes();
+
         String email = null;
-        if (attr.containsKey("kakao_account")) {
-            Map<String, Object> kakaoAccount = (Map<String, Object>) attr.get("kakao_account");
+        String name = null;
+        String provider = "social";
+
+        // Kakao returns kakao_account
+        if (attributes.containsKey("kakao_account")) {
+            Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
             email = (String) kakaoAccount.get("email");
-        } else if (attr.containsKey("email")) {
-            email = (String) attr.get("email");
+            Object profile = kakaoAccount.get("profile");
+            if (profile instanceof Map) {
+                name = (String) ((Map) profile).get("nickname");
+            }
+            provider = "kakao";
+        } else if (attributes.containsKey("email")) { // Google
+            email = (String) attributes.get("email");
+            name = (String) attributes.getOrDefault("name", null);
+            provider = "google";
+        } else {
+            // fallback (non-email provider)
+            email = String.valueOf(attributes.get("id"));
         }
 
         if (email == null) {
@@ -42,29 +56,28 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
             return;
         }
 
-        String provider = oauthUser.getName(); // may not be provider name; we will attempt to detect
-        String providerId = authentication.getAuthorities().toString();
-
-        Optional<User> maybe = userRepository.findByEmail(email);
+        Optional<User> existing = userRepository.findByEmail(email);
         User user;
-        if (maybe.isPresent()) {
-            user = maybe.get();
+        if (existing.isPresent()) {
+            user = existing.get();
+            if (user.getProvider() == null) user.setProvider(provider);
+            if (user.getNickname() == null && name != null) user.setNickname(name);
         } else {
-            user = User.builder()
-                    .email(email)
-                    .provider("SOCIAL")
-                    .nickname(email.split("@")[0])
-                    .build();
+            user = new User();
+            user.setEmail(email);
+            user.setNickname(name == null ? email.split("@")[0] : name);
+            user.setProvider(provider);
             userRepository.save(user);
         }
 
+        // create tokens and persist refresh
         String access = jwtTokenProvider.createAccessToken(email);
         String refresh = jwtTokenProvider.createRefreshToken(email);
         user.setRefreshToken(refresh);
         userRepository.save(user);
 
-        // Redirect to frontend with token in query (for demo only)
-        String redirect = "http://localhost:3000/?accessToken=" + access + "&refreshToken=" + refresh;
+        // redirect to front with tokens (demo - in prod use HttpOnly cookies)
+        String redirect = String.format("%s?accessToken=%s&refreshToken=%s", "http://localhost:3000", access, refresh);
         response.sendRedirect(redirect);
     }
 }

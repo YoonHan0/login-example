@@ -2,6 +2,7 @@ package com.example.auth.jwt;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -18,8 +19,8 @@ public class JwtTokenProvider {
     private final long refreshExpireMs;
 
     public JwtTokenProvider(@Value("${jwt.secret}") String secret,
-                            @Value("${jwt.access-expire-ms}") long accessExpireMs,
-                            @Value("${jwt.refresh-expire-ms}") long refreshExpireMs) {
+                            @Value("${jwt.access-expire-ms:900000}") long accessExpireMs,
+                            @Value("${jwt.refresh-expire-ms:1209600000}") long refreshExpireMs) {
         this.key = Keys.hmacShaKeyFor(secret.getBytes());
         this.accessExpireMs = accessExpireMs;
         this.refreshExpireMs = refreshExpireMs;
@@ -54,7 +55,15 @@ public class JwtTokenProvider {
         }
     }
 
-    public String getSubject(String token) {
+    public String getEmailFromToken(String token) {
         return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().getSubject();
+    }
+
+    public String resolveToken(HttpServletRequest req) {
+        String header = req.getHeader("Authorization");
+        if (header != null && header.startsWith("Bearer ")) {
+            return header.substring(7);
+        }
+        return null;
     }
 }
