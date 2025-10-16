@@ -1,0 +1,57 @@
+###################### COMMON ######################
+.DS_Store
+Thumbs.db
+ehthumbs.db
+*.log
+.env
+.env.*
+/h2
+
+###################### FRONTEND ######################
+/frontend/node_modules/
+/frontend/.pnp/
+/frontend/.pnp.js
+
+/frontend/coverage/
+/frontend/build/
+
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+
+###################### BACKEND ######################
+/backend/HELP.md
+/backend/.gradle/
+/backend/build/
+
+### STS ###
+/backend/.apt_generated/
+/backend/.classpath
+/backend/.factorypath
+/backend/.project
+/backend/.settings/
+/backend/.springBeans
+/backend/.sts4-cache/
+/backend/bin/
+
+### IntelliJ IDEA ###
+/backend/.idea/
+/backend/*.iws
+/backend/*.iml
+/backend/*.ipr
+/backend/out/
+
+### NetBeans ###
+/backend/nbproject/private/
+/backend/nbbuild/
+/backend/dist/
+/backend/nbdist/
+/backend/.nb-gradle/
+
+### VS Code ###
+/backend/.vscode/

@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: YOUR_GOOGLE_CLIENT_ID
+            client-secret: YOUR_GOOGLE_CLIENT_SECRET
+            scope:
+              - openid
+              - profile
+              - email
+            redirect-uri: "{baseUrl}/login/oauth2/code/google"
+          kakao:
+            client-id: YOUR_KAKAO_CLIENT_ID
+            client-secret: YOUR_KAKAO_CLIENT_SECRET
+            redirect-uri: "{baseUrl}/login/oauth2/code/kakao"
+
+jwt:
+  secret: MY_VERY_SECRET_KEY_CHANGE_ME_which_should_be_long
+  access-expire-ms: 900000
+  refresh-expire-ms: 1209600000
+
+app:
+  base-url: http://localhost:3000
