@@ -36,21 +36,46 @@ export default function LoginForm() {
 
     if(!access) return alert('로그인 필요');
 
-    const r = await fetch('/api/user/me',{headers:{'Authorization':'Bearer '+access}});
+    const r = await fetch(
+      '/api/user/me',
+      {
+        headers: {'Authorization':'Bearer '+ access}
+      }
+    );
+    
+    console.log("=== 내정보 클릭 ===")
 
     if(r.ok) { 
-      const user = await r.json(); alert(JSON.stringify(user)); 
+      
+      const user = await r.json(); 
+      const nickname = user.nickname;
+
+      alert( !!nickname ? `🎉 환영합니다 ${nickname}님` : `🎉 환영합니다` ); 
     } 
     else {
       alert('me 실패');
     }
   };
 
-  return (<div>
-    <h3>Login</h3>
-    <input placeholder="email" value={email} onChange={e=>setEmail(e.target.value)} /><br/>
-    <input type="password" placeholder="password" value={pw} onChange={e=>setPw(e.target.value)} /><br/>
-    <button onClick={login}>로그인</button>
-    <button onClick={me}>내정보</button>
-  </div>);
+  return (
+    <div>
+      <h3>로그인</h3>
+      <input 
+        placeholder="email" 
+        value={email} 
+        onChange={ e => setEmail(e.target.value) } 
+      />
+      <br/>
+      <input 
+        type="password" 
+        placeholder="password" 
+        value={pw} 
+        onChange={ e => setPw(e.target.value)} 
+      />
+      <br/>
+
+      <button onClick={login}>로그인</button>
+      <button onClick={me}>내정보</button>
+    </div>
+  );
 }

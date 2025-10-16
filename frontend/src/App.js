@@ -14,7 +14,7 @@ function App() {
   
   return (
     <div style={{padding:20}}>
-      <h1>Auth Example</h1>
+      <h1>Login Example</h1>
       <SignupForm />
       <hr />
       <LoginForm />

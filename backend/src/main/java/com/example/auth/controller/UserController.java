@@ -21,9 +21,15 @@ public class UserController {
 
     @GetMapping("/me")
     public ResponseEntity<?> me(@AuthenticationPrincipal String email) {
-        if (email == null) return ResponseEntity.status(401).build();
+
+        if (email == null)
+            return ResponseEntity.status(401).build();
+
         User user = userRepository.findByEmail(email).orElse(null);
-        if (user == null) return ResponseEntity.notFound().build();
+
+        if (user == null)
+            return ResponseEntity.notFound().build();
+
         return ResponseEntity.ok(user);
     }
 }
