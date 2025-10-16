@@ -30,9 +30,9 @@ function App() {
       <LoginForm />
       <hr />
       <div>
-        <button onClick={handleSocialLogin}>Login with Google</button>
+        <button onClick={() => handleSocialLogin('google')}>Login with Google</button>
         <br/>
-        <button onClick={handleSocialLogin}>Login with KaKao</button>
+        <button onClick={() => handleSocialLogin('kakao')}>Login with KaKao</button>
       </div>
     </div>
   );
