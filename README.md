@@ -1,18 +1,70 @@
-# auth-example-complete2
+# 👨‍💻 Login Project
 
-This project contains a Spring Boot (Gradle) backend with JWT + OAuth2 integration (Kakao/Google placeholders)
-and a simple Create-React-App frontend.
+> React + Spring Boot + JWT + OAuth2 기반의 인증 예제 프로젝트  
+> 회원가입 / 로그인 / 소셜 로그인 / JWT 인증 / 내정보 조회 기능을 포함합니다.
 
-## Backend (run)
-cd backend
-./gradlew bootRun
+<br />
 
-## Frontend (run)
-cd frontend
-npm install
-npm start
+## 📚 기술 스택
 
-## Notes
-- application.yml contains dummy OAuth client ids/secrets under spring.security.oauth2.client.registration.*
-- JWT secret is in application.yml under jwt.secret
-- For real OAuth logins replace client-id and client-secret with values from providers.
+| 구분 | 기술 | 설명 |
+|------|------|------|
+| **Frontend** | React 18 (CRA) | 회원가입, 로그인, 내정보 페이지 UI |
+|  | Axios | REST API 통신 |
+| **Backend** | Spring Boot 3.2 / Java 17 | REST API 서버 |
+|  | Spring Security | 인증/인가, OAuth2 클라이언트 |
+|  | Spring Data JPA | H2 DB 연동 및 ORM |
+|  | JJWT (io.jsonwebtoken) | JWT 토큰 생성 및 검증 |
+|  | Lombok | Boilerplate 코드 제거 |
+| **Database** | H2 (in-memory) | 개발/테스트용 메모리 DB |
+| **Build & Tool** | Gradle (Groovy DSL) | 백엔드 빌드 |
+|  | npm / CRA | 프론트엔드 빌드 |
+| **Infra** | Localhost (3000 / 8080) | CRA proxy로 API 연동 |
+
+<br />
+
+## ⚙️ 주요 기능
+
+### 🧾 회원가입 (`POST /api/auth/register`)
+- 이메일 중복 확인 (`GET /api/auth/exists?email=...`)
+- 이메일 형식 검증 (`@Email`)
+- 비밀번호 규칙 검증 (8자 이상, 대소문자/숫자 포함)
+- BCryptPasswordEncoder로 암호화 저장
+
+### 🔐 로그인 (`POST /api/auth/login`)
+- 이메일 및 비밀번호 검증
+- 로그인 성공 시 JWT AccessToken / RefreshToken 발급
+- RefreshToken은 DB(User 테이블)에 저장
+
+### 🪪 내정보 조회 (`GET /api/user/me`)
+- Authorization 헤더의 Bearer Token 검증
+- `JwtAuthenticationFilter`가 인증 정보를 설정
+- SecurityContext에 저장된 사용자 정보 반환
+
+### 🌐 소셜 로그인 (OAuth2) (진행중)
+- Google / Kakao 로그인 지원
+- 최초 로그인 시 자동 회원가입
+- 로그인 성공 후 JWT 발급 및 프론트 리다이렉트
+
+<br />
+
+## 🚀 개발 시나리오 예시
+
+1. 회원가입 페이지에서 이메일과 비밀번호 입력
+   - 이메일 중복체크 API 호출 (/api/auth/exists)
+   - 유효성 검증 실패 시 메시지 표시
+2. 비밀번호 검증 (영문/숫자 조합, 8자 이상)
+3. 회원가입 성공 → 로그인 페이지 이동
+4. 로그인 성공 → JWT 발급 후 localStorage 저장
+5. 내정보 페이지(/api/user/me) 호출 시 Authorization 헤더 포함
+
+<br />
+
+## ⚠️ 주의 및 확장 포인트
+
+- 실제 운영 환경에서는 H2 → MySQL/PostgreSQL 변경
+- JWT Secret 키는 환경변수로 관리 (노출 금지)
+- Refresh Token 저장 시 Redis 또는 별도 테이블 권장
+- CSRF, CORS 정책 세분화 필요
+- 소셜 로그인 시 이메일 미제공 케이스 처리
+
