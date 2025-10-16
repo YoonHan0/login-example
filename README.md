@@ -45,6 +45,7 @@
 - Google / Kakao 로그인 지원
 - 최초 로그인 시 자동 회원가입
 - 로그인 성공 후 JWT 발급 및 프론트 리다이렉트
+[참고](https://velog.io/@bdd14club/%EB%B0%B1%EC%97%94%EB%93%9C-2.-%EA%B5%AC%EA%B8%80-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
 
 <br />
 
