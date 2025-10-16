@@ -68,3 +68,11 @@
 - CSRF, CORS 정책 세분화 필요
 - 소셜 로그인 시 이메일 미제공 케이스 처리
 
+<br />
+<br />
+
+## 👨‍💻 Author
+Developed by: [YoonHan0](https://github.com/YoonHan0) <br />
+Environment: macOS / Java 17 / Node.js 18 / Spring Boot 3.2
+> 💡 본 프로젝트는 인증 로직의 기본 학습용 예제입니다. <br />
+실서비스에서는 키 관리, 토큰 만료 정책, HTTPS 환경 설정 등이 추가되어야 합니다.
