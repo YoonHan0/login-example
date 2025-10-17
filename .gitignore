@@ -45,6 +45,7 @@ ehthumbs.db
 /backend/*.iml
 /backend/*.ipr
 /backend/out/
+/backend/.env.local
 
 ### NetBeans ###
 /backend/nbproject/private/

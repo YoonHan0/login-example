@@ -11,6 +11,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) {
 
+        System.out.println("===== CustomOAuth2UserService 호출 =====");
         OAuth2User user = super.loadUser(userRequest);
 
         // 여기서 속성 매핑/정제 작업을 추가할 수 있음

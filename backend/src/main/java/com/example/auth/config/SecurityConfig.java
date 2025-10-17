@@ -2,11 +2,13 @@ package com.example.auth.config;
 
 import com.example.auth.jwt.JwtTokenProvider;
 import com.example.auth.oauth.CustomOAuth2UserService;
+import com.example.auth.oauth.OAuth2LoginFailureHandler;
 import com.example.auth.oauth.OAuth2SuccessHandler;
 import com.example.auth.repository.UserRepository;
 import com.example.auth.security.JwtAuthenticationFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -33,15 +35,24 @@ public class SecurityConfig {
     private final UserRepository userRepository;
     private final CustomOAuth2UserService customOAuth2UserService;
     private final OAuth2SuccessHandler oAuth2SuccessHandler;
+    private final OAuth2LoginFailureHandler oAuth2LoginFailureHandler;
+    private final String googleClientId;
+    private final String googleClientSecret;
 
     public SecurityConfig(JwtTokenProvider jwtTokenProvider,
                           UserRepository userRepository,
                           CustomOAuth2UserService customOAuth2UserService,
-                          OAuth2SuccessHandler oAuth2SuccessHandler) {
+                          OAuth2SuccessHandler oAuth2SuccessHandler,
+                          OAuth2LoginFailureHandler oAuth2LoginFailureHandler,
+                          @Value("${GOOGLE_CLIENT_ID}") String googleClientId,
+                          @Value("${GOOGLE_CLIENT_SECRET}") String googleClientSecret) {
         this.jwtTokenProvider = jwtTokenProvider;
         this.userRepository = userRepository;
         this.customOAuth2UserService = customOAuth2UserService;
         this.oAuth2SuccessHandler = oAuth2SuccessHandler;
+        this.oAuth2LoginFailureHandler = oAuth2LoginFailureHandler;
+        this.googleClientId = googleClientId;
+        this.googleClientSecret = googleClientSecret;
     }
 
     @Bean
@@ -51,13 +62,16 @@ public class SecurityConfig {
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .formLogin(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/api/auth/**", "/oauth2/**", "/h2-console/**").permitAll()
+                    .requestMatchers(
+                            "/", "/login", "/login/google",
+                            "/api/auth/**", "/oauth2/**", "/h2-console/**").permitAll()
                     .anyRequest().authenticated()
             )
             .headers(headers -> headers.frameOptions().disable())
             .oauth2Login(oauth -> oauth
                     .userInfoEndpoint(u -> u.userService(customOAuth2UserService))
-                    .successHandler(oAuth2SuccessHandler)
+                    .successHandler(oAuth2SuccessHandler)       // 소셜 로그인 요청에 성공하면
+                    .failureHandler(oAuth2LoginFailureHandler)  // 소셜 로그인 요청에 실패하면
             )
             .exceptionHandling(ex -> ex
                     .authenticationEntryPoint((request, response, authException) -> {
@@ -85,25 +99,27 @@ public class SecurityConfig {
     public ClientRegistrationRepository clientRegistrationRepository() {
         ClientRegistration googleRegistration = CommonOAuth2Provider.GOOGLE
                 .getBuilder("google")
-                .clientId("YOUR_GOOGLE_CLIENT_ID")
-                .clientSecret("YOUR_GOOGLE_CLIENT_SECRET")
+                .clientId(googleClientId)
+                .clientSecret(googleClientSecret)
                 .build();
 
-        ClientRegistration kakaoRegistration = ClientRegistration.withRegistrationId("kakao")
-                .clientId("YOUR_KAKAO_CLIENT_ID")
-                .clientSecret("YOUR_KAKAO_CLIENT_SECRET")
-                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
-                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                .redirectUri("{baseUrl}/login/oauth2/code/{registrationId}")
-                .scope("profile", "account_email") // 필요한 scope
-                .authorizationUri("https://kauth.kakao.com/oauth/authorize")
-                .tokenUri("https://kauth.kakao.com/oauth/token")
-                .userInfoUri("https://kapi.kakao.com/v2/user/me")
-                .userNameAttributeName("id")
-                .clientName("Kakao")
-                .build();
+          /* 카카오 소셜 로그인 사용 시 사용 */
+//        ClientRegistration kakaoRegistration = ClientRegistration.withRegistrationId("kakao")
+//                .clientId("YOUR_KAKAO_CLIENT_ID")
+//                .clientSecret("YOUR_KAKAO_CLIENT_SECRET")
+//                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
+//                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+//                .redirectUri("{baseUrl}/login/oauth2/code/{registrationId}")
+//                .scope("profile", "account_email") // 필요한 scope
+//                .authorizationUri("https://kauth.kakao.com/oauth/authorize")
+//                .tokenUri("https://kauth.kakao.com/oauth/token")
+//                .userInfoUri("https://kapi.kakao.com/v2/user/me")
+//                .userNameAttributeName("id")
+//                .clientName("Kakao")
+//                .build();
 
-        return new InMemoryClientRegistrationRepository(googleRegistration, kakaoRegistration);
+//        return new InMemoryClientRegistrationRepository(googleRegistration, kakaoRegistration);
+        return new InMemoryClientRegistrationRepository(googleRegistration);
     }
 
 }

@@ -23,6 +23,9 @@ public class User {
     // provider: LOCAL, GOOGLE, KAKAO
     private String provider;
 
+    @Column(nullable = false, unique = true)
+    private String providerId;
+
     private String nickname;
 
     // refresh token (optional)
