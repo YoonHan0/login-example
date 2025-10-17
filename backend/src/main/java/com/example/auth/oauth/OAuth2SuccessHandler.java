@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 import jakarta.servlet.http.*;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.util.Map;
@@ -57,6 +58,18 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
         if (existUser == null) {
             log.info("✨ 신규 유저입니다.");
             log.info(oAuth2UserInfo.toString());
+
+            String redirectUrl = UriComponentsBuilder
+                    .fromUriString("http://localhost:3000/signup")
+                    .queryParam("email", oAuth2UserInfo.getEmail())
+                    .queryParam("name", oAuth2UserInfo.getName())
+                    .build()
+                    .encode()
+                    .toUriString();
+
+            response.sendRedirect(redirectUrl);
+
+            return;
 
         } else {
             log.info("🧑‍💻 기존 유저입니다.");

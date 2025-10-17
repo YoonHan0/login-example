@@ -1,0 +1,159 @@
+.auth-card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  .auth-title {
+    color: #1e293b;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .input-label {
+    color: #475569;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .auth-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    outline: none;
+  }
+  
+  .auth-input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+  
+  .auth-input::placeholder {
+    color: #94a3b8;
+  }
+  
+  .input-with-button {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .input-with-button .auth-input {
+    flex: 1;
+  }
+  
+  .secondary-button {
+    padding: 14px 20px;
+    background: #f1f5f9;
+    color: #475569;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .secondary-button:hover {
+    background: #e2e8f0;
+    transform: translateY(-1px);
+  }
+  
+  .secondary-button:active {
+    transform: translateY(0);
+  }
+  
+  .primary-button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    margin-top: 8px;
+  }
+  
+  .primary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+  
+  .primary-button:active {
+    transform: translateY(0);
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  
+  .button-group .primary-button {
+    flex: 1;
+    margin-top: 0;
+  }
+  
+  .auth-link {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+  }
+  
+  .auth-link a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .auth-link a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+  }
+  
+  .password-hint {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 480px) {
+    .auth-card {
+      padding: 32px 24px;
+    }
+  
+    .auth-title {
+      font-size: 24px;
+    }
+  
+    .button-group {
+      flex-direction: column;
+    }
+  }
+  

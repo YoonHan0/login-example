@@ -67,7 +67,7 @@ public class SecurityConfig {
                             "/api/auth/**", "/oauth2/**", "/h2-console/**").permitAll()
                     .anyRequest().authenticated()
             )
-            .headers(headers -> headers.frameOptions().disable())
+            .headers(headers -> headers.frameOptions(frame -> frame.disable()))
             .oauth2Login(oauth -> oauth
                     .userInfoEndpoint(u -> u.userService(customOAuth2UserService))
                     .successHandler(oAuth2SuccessHandler)       // 소셜 로그인 요청에 성공하면

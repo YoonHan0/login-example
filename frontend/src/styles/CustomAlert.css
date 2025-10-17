@@ -1,0 +1,106 @@
+.custom-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.2s ease-out;
+    backdrop-filter: blur(4px);
+  }
+  
+  .custom-alert-container {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+    padding: 32px;
+    text-align: center;
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  .custom-alert-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 auto 20px;
+    color: white;
+  }
+  
+  .custom-alert-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+  }
+  
+  .custom-alert-error {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+  }
+  
+  .custom-alert-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+  }
+  
+  .custom-alert-info {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+  }
+  
+  .custom-alert-message {
+    color: #1e293b;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    white-space: pre-line;
+  }
+  
+  .custom-alert-button {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+  
+  .custom-alert-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+  
+  .custom-alert-button:active {
+    transform: translateY(0);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  

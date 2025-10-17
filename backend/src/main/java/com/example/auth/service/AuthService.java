@@ -42,6 +42,7 @@ public class AuthService {
                 .password(passwordEncoder.encode(req.getPassword()))
                 .nickname(req.getNickname())
                 .provider("LOCAL")
+                .providerId(null)
                 .build();
         userRepository.save(u);
     }

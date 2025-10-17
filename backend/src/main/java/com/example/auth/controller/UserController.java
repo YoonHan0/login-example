@@ -22,8 +22,11 @@ public class UserController {
     @GetMapping("/me")
     public ResponseEntity<?> me(@AuthenticationPrincipal String email) {
 
-        if (email == null)
+        if (email == null) {
+            System.out.println("[Error] 이메일이 확인되지 않습니다.");
             return ResponseEntity.status(401).build();
+        }
+
 
         User user = userRepository.findByEmail(email).orElse(null);
 
