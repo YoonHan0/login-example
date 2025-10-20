@@ -63,7 +63,7 @@ public class AuthService {
 
         u.setRefreshToken(refresh);
 
-        userRepository.save(u);
+        userRepository.save(u);     // Refresh Token 저장을 위한 save ?
 
         return new TokenResponse(access, refresh);
     }
