@@ -87,3 +87,4 @@ Environment: macOS / Java 17 / Node.js 18 / Spring Boot 3.2
 
 ## 💡 추가로 알게된 개념
 [URI, URL의 차이](https://inpa.tistory.com/entry/WEB-%F0%9F%8C%90-URL-URI-%EC%B0%A8%EC%9D%B4)
+[Spring Security Context](https://wildeveloperetrain.tistory.com/324#google_vignette)

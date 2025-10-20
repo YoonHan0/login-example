@@ -3,9 +3,12 @@ package com.example.auth.controller;
 import com.example.auth.entity.User;
 import com.example.auth.repository.UserRepository;
 import com.example.auth.jwt.JwtTokenProvider;
+import com.example.auth.security.CustomUserDetails;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/user")
@@ -20,14 +23,16 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<?> me(@AuthenticationPrincipal String email) {
+    public ResponseEntity<?> me(@AuthenticationPrincipal CustomUserDetails userDetail) {
 
-        if (email == null) {
-            System.out.println("[Error] 이메일이 확인되지 않습니다.");
-            return ResponseEntity.status(401).build();
+        if (userDetail == null) {
+            System.out.println("[Error] 인증 정보가 없습니다.");
+            return ResponseEntity.status(401).body(Map.of("error", "인증 정보가 없습니다."));
         }
+        System.out.println("=== me 호출 ===");
+        System.out.println(userDetail.toString());
 
-
+        String email = userDetail.getUser().getEmail();
         User user = userRepository.findByEmail(email).orElse(null);
 
         if (user == null)

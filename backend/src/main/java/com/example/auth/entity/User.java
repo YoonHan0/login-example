@@ -31,4 +31,13 @@ public class User {
     // refresh token (optional)
     @Column(length = 500)
     private String refreshToken;
+
+    public String toString() {
+        return "id: " + id +
+                "email: " + email +
+                "password: " + password +
+                "provider: " + provider +
+                "providerId: " + providerId +
+                "nickname: " + nickname;
+    }
 }
