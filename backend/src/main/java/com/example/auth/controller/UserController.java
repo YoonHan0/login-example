@@ -1,5 +1,6 @@
 package com.example.auth.controller;
 
+import com.example.auth.dto.UserInfoResponse;
 import com.example.auth.entity.User;
 import com.example.auth.repository.UserRepository;
 import com.example.auth.jwt.JwtTokenProvider;
@@ -32,12 +33,14 @@ public class UserController {
         System.out.println("=== me 호출 ===");
         System.out.println(userDetail.toString());
 
-        String email = userDetail.getUser().getEmail();
+        String email = userDetail.getUsername();
         User user = userRepository.findByEmail(email).orElse(null);
 
         if (user == null)
             return ResponseEntity.notFound().build();
 
-        return ResponseEntity.ok(user);
+        UserInfoResponse userInfoRes = new UserInfoResponse(user.getNickname());    // 필요한 정보만 Response 에 담기
+
+        return ResponseEntity.ok(userInfoRes);
     }
 }

@@ -48,17 +48,23 @@ public class AuthService {
     }
 
     public TokenResponse login(UserLoginRequest req) {
+
         User u = userRepository.findByEmail(req.getEmail()).orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+
         if (u.getProvider() != null && !"LOCAL".equals(u.getProvider()) && u.getPassword() == null) {
             throw new IllegalArgumentException("소셜 계정으로 가입된 사용자입니다.");
         }
         if (!passwordEncoder.matches(req.getPassword(), u.getPassword())) {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
+
         String access = jwtTokenProvider.createAccessToken(u.getEmail());
         String refresh = jwtTokenProvider.createRefreshToken(u.getEmail());
+
         u.setRefreshToken(refresh);
+
         userRepository.save(u);
+
         return new TokenResponse(access, refresh);
     }
 

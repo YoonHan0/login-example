@@ -9,17 +9,21 @@ import java.util.Collections;
 
 public class CustomUserDetails implements UserDetails {
 
-    private final User user;
+    private final Long id;
+    private final String email;
+    private final String nickname;
 
     public CustomUserDetails(User user) {
-        this.user = user;
+        this.email = user.getEmail();
+        this.id = user.getId();
+        this.nickname = user.getNickname();
     }
 
-    public User getUser() {
-        return user;
+    public String toString() {
+        return "id: " + id +
+                ", email: " + email +
+                ", nickname: " + nickname;
     }
-
-    public String toString() { return user.toString(); }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -28,12 +32,12 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return "";
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return email;
     }
 
     @Override public boolean isAccountNonExpired() { return true; }

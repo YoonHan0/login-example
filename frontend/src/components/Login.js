@@ -12,6 +12,7 @@ export default function Login() {
   }
 
   const login = async () => {
+
     const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -19,20 +20,28 @@ export default function Login() {
         email,
         password: pw,
       }),
-    })
+    });
 
     if (res.ok) {
-      const body = await res.json()
-      localStorage.setItem("access", body.accessToken)
-      localStorage.setItem("refresh", body.refreshToken)
-      showAlert("로그인 성공", "success")
+
+      const body = await res.json();
+
+      localStorage.setItem("access", body.accessToken);
+      localStorage.setItem("refresh", body.refreshToken);
+
+      showAlert("로그인 성공", "success");
+
     } else {
-      const t = await res.text()
-      showAlert("로그인 실패: " + t, "error")
+
+      const t = await res.text();
+
+      showAlert("로그인 실패: " + t, "error");
+
     }
   }
 
   const me = async () => {
+
     const access = localStorage.getItem("access")
 
     if (!access) return showAlert("로그인 필요", "warning")
@@ -49,7 +58,9 @@ export default function Login() {
 
       showAlert(!!nickname ? `🎉 환영합니다 ${nickname}님` : `🎉 환영합니다`, "success")
     } else {
-      showAlert("me 실패", "error")
+      // const data = await r.json();
+      // showAlert(data.error, 'error');
+      showAlert("me 실패", 'error');
     }
   }
 
