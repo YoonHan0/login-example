@@ -45,7 +45,9 @@
 - Google / Kakao 로그인 지원
 - 최초 로그인 시 자동 회원가입
 - 로그인 성공 후 JWT 발급 및 프론트 리다이렉트
-[참고](https://velog.io/@bdd14club/%EB%B0%B1%EC%97%94%EB%93%9C-2.-%EA%B5%AC%EA%B8%80-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
+
+[스프링부트 구글 소셜 로그인 구현하기](https://velog.io/@bdd14club/%EB%B0%B1%EC%97%94%EB%93%9C-2.-%EA%B5%AC%EA%B8%80-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0) <br/>
+[백엔드 소셜 로그인을 구현해보자](https://velog.io/@juuuunny/%EB%B0%B1%EC%97%94%EB%93%9C%EC%97%90%EC%84%9C-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8%EC%9D%84-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EC%9E%90-%EC%B9%B4%EC%B9%B4%EC%98%A4-%EA%B5%AC%EA%B8%80-%EB%84%A4%EC%9D%B4%EB%B2%84-3%EC%A2%85-%EC%A0%81%EC%9A%A9%EA%B8%B0#35-%EC%9D%B8%EC%A6%9D-%EC%84%B1%EA%B3%B5-%EC%8B%9C)
 
 <br />
 
@@ -56,6 +58,8 @@
    - 유효성 검증 실패 시 메시지 표시
 2. 비밀번호 검증 (영문/숫자 조합, 8자 이상)
 3. 회원가입 성공 → 로그인 페이지 이동
+
+   3-1. 소셜로그인으로 회원가입 시 레지스터 토큰 발급, 추가 정보 입력 후 회원가입 진행
 4. 로그인 성공 → JWT 발급 후 localStorage 저장
 5. 내정보 페이지(/api/user/me) 호출 시 Authorization 헤더 포함
 
@@ -77,3 +81,9 @@ Developed by: [YoonHan0](https://github.com/YoonHan0) <br />
 Environment: macOS / Java 17 / Node.js 18 / Spring Boot 3.2
 > 💡 본 프로젝트는 인증 로직의 기본 학습용 예제입니다. <br />
 실서비스에서는 키 관리, 토큰 만료 정책, HTTPS 환경 설정 등이 추가되어야 합니다.
+
+<br />
+<br />
+
+## 💡 추가로 알게된 개념
+[URI, URL의 차이](https://inpa.tistory.com/entry/WEB-%F0%9F%8C%90-URL-URI-%EC%B0%A8%EC%9D%B4)
