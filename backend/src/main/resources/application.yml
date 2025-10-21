@@ -42,9 +42,12 @@ spring:
             user-name-attribute: id
 
 jwt:
-  secret: MY_VERY_SECRET_KEY_CHANGE_ME_which_should_be_long
+  secret: 32자리이상으로충분히긴비밀키!@
   access-expire-ms: 900000
   refresh-expire-ms: 1209600000
+  register-expire-ms: 450000
 
 app:
   base-url: http://localhost:3000
+  redirect:
+    onboarding: http://localhost:3000/signup

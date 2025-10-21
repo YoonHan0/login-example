@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
+/* 이 클래스 위치가 dto 폴더로 넘어가는게 맞지 않을까... */
 public class CustomUserDetails implements UserDetails {
 
     private final Long id;
