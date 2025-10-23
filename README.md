@@ -47,6 +47,7 @@
 - 로그인 성공 후 JWT 발급 및 프론트 리다이렉트
 
 [스프링부트 구글 소셜 로그인 구현하기](https://velog.io/@bdd14club/%EB%B0%B1%EC%97%94%EB%93%9C-2.-%EA%B5%AC%EA%B8%80-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0) <br/>
+[백엔드에서 소셜 로그인을 구현해보자(총정리)](https://velog.io/@hsh111366/Spring-Security-%EB%B0%B1%EC%97%94%EB%93%9C%EC%97%90%EC%84%9C-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%90%EC%84%9C-%ED%95%B4%EC%95%BC-%ED%95%A0-%EC%9D%BC-%EC%B4%9D%EC%A0%95%EB%A6%AC-feat.-OAuth2.0) <br/>
 [백엔드 소셜 로그인을 구현해보자](https://velog.io/@juuuunny/%EB%B0%B1%EC%97%94%EB%93%9C%EC%97%90%EC%84%9C-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8%EC%9D%84-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EC%9E%90-%EC%B9%B4%EC%B9%B4%EC%98%A4-%EA%B5%AC%EA%B8%80-%EB%84%A4%EC%9D%B4%EB%B2%84-3%EC%A2%85-%EC%A0%81%EC%9A%A9%EA%B8%B0#35-%EC%9D%B8%EC%A6%9D-%EC%84%B1%EA%B3%B5-%EC%8B%9C)
 
 <br />
@@ -93,7 +94,7 @@ Environment: macOS / Java 17 / Node.js 18 / Spring Boot 3.2
 <br />
 
 ## 💡 추가로 알게된 개념
-[URI, URL의 차이](https://inpa.tistory.com/entry/WEB-%F0%9F%8C%90-URL-URI-%EC%B0%A8%EC%9D%B4)
-[Spring Security Context](https://wildeveloperetrain.tistory.com/324#google_vignette)
-[쿠기 vs 세션 vs 토큰](https://inpa.tistory.com/entry/WEB-%F0%9F%93%9A-JWTjson-web-token-%EB%9E%80-%F0%9F%92%AF-%EC%A0%95%EB%A6%AC)
+[URI, URL의 차이](https://inpa.tistory.com/entry/WEB-%F0%9F%8C%90-URL-URI-%EC%B0%A8%EC%9D%B4) <br/>
+[Spring Security Context](https://wildeveloperetrain.tistory.com/324#google_vignette) <br/>
+[쿠기 vs 세션 vs 토큰](https://inpa.tistory.com/entry/WEB-%F0%9F%93%9A-JWTjson-web-token-%EB%9E%80-%F0%9F%92%AF-%EC%A0%95%EB%A6%AC) <br/>
 [Access Token, Refresh Token](https://inpa.tistory.com/entry/WEB-%F0%9F%93%9A-Access-Token-Refresh-Token-%EC%9B%90%EB%A6%AC-feat-JWT)
