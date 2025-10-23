@@ -88,6 +88,19 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
             return;
             */
 
+            // [임시] 레지스터 토큰 구현 전까지 해당 로직을 실행
+            String redirectUrl = UriComponentsBuilder
+                    .fromUriString(REDIRECT_URI_ONBOARDING)
+                    .queryParam("email", oAuth2UserInfo.getEmail())
+                    .queryParam("name", oAuth2UserInfo.getName())
+                    .build()
+                    .encode()
+                    .toUriString();
+
+            response.sendRedirect(redirectUrl);
+
+            return;
+
         } else {
             log.info("🧑‍💻 기존 유저입니다.");
             log.info(oAuth2UserInfo.toString());

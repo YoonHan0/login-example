@@ -42,7 +42,7 @@ spring:
             user-name-attribute: id
 
 jwt:
-  secret: 32자리이상으로충분히긴비밀키!@
+  secret: yoonhan0gotokakaoornaverisgood
   access-expire-ms: 900000
   refresh-expire-ms: 1209600000
   register-expire-ms: 450000
