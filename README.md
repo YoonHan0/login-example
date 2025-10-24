@@ -1,3 +1,12 @@
+구현 위주로 진행을 하다가 막히는 개념들이 생겨서 개념들부터 정리해서 차근차근 다시 개발하도록 하겠습니다..
+1. [Security 개념 공부](https://www.youtube.com/playlist?list=PLJkjrxxiBSFCFM0pjDwm6F98veieD0MER)
+2. [JWT 개념 공부](https://www.youtube.com/playlist?list=PLJkjrxxiBSFCcOjy0AAVGNtIa08VLk1EJ)
+   - [JWT 심화](https://www.youtube.com/watch?v=SxfweG-F6JM&list=PLJkjrxxiBSFATow4HY2qr5wLvXM6Rg-BM)
+3. OAuth2 개념 공부 (두 영상의 차이를 모르겠어서 일단 구분해서 기록)
+   - [클라이언트 세션](https://www.youtube.com/playlist?list=PLJkjrxxiBSFBGk0b931ZkCVlNUo7sFisu)
+   - [인가 서버](https://www.youtube.com/watch?v=7fMVxohRvl0)
+4. [로그인 구현](https://www.youtube.com/playlist?list=PLJkjrxxiBSFDijahNi4XIzkD0l9jtwE8e)
+
 # 👨‍💻 Login Project
 
 > React + Spring Boot + JWT + OAuth2 기반의 인증 예제 프로젝트  
@@ -48,7 +57,8 @@
 
 [스프링부트 구글 소셜 로그인 구현하기](https://velog.io/@bdd14club/%EB%B0%B1%EC%97%94%EB%93%9C-2.-%EA%B5%AC%EA%B8%80-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0) <br/>
 [백엔드에서 소셜 로그인을 구현해보자(총정리)](https://velog.io/@hsh111366/Spring-Security-%EB%B0%B1%EC%97%94%EB%93%9C%EC%97%90%EC%84%9C-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%90%EC%84%9C-%ED%95%B4%EC%95%BC-%ED%95%A0-%EC%9D%BC-%EC%B4%9D%EC%A0%95%EB%A6%AC-feat.-OAuth2.0) <br/>
-[백엔드 소셜 로그인을 구현해보자](https://velog.io/@juuuunny/%EB%B0%B1%EC%97%94%EB%93%9C%EC%97%90%EC%84%9C-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8%EC%9D%84-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EC%9E%90-%EC%B9%B4%EC%B9%B4%EC%98%A4-%EA%B5%AC%EA%B8%80-%EB%84%A4%EC%9D%B4%EB%B2%84-3%EC%A2%85-%EC%A0%81%EC%9A%A9%EA%B8%B0#35-%EC%9D%B8%EC%A6%9D-%EC%84%B1%EA%B3%B5-%EC%8B%9C)
+[백엔드 소셜 로그인을 구현해보자](https://velog.io/@juuuunny/%EB%B0%B1%EC%97%94%EB%93%9C%EC%97%90%EC%84%9C-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8%EC%9D%84-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EC%9E%90-%EC%B9%B4%EC%B9%B4%EC%98%A4-%EA%B5%AC%EA%B8%80-%EB%84%A4%EC%9D%B4%EB%B2%84-3%EC%A2%85-%EC%A0%81%EC%9A%A9%EA%B8%B0#35-%EC%9D%B8%EC%A6%9D-%EC%84%B1%EA%B3%B5-%EC%8B%9C) <br/>
+[스프링+리액트 로그인 구현](https://www.youtube.com/watch?v=nMSFHreQdbU)
 
 <br />
 
@@ -86,7 +96,7 @@
 
 ## 👨‍💻 Author
 Developed by: [YoonHan0](https://github.com/YoonHan0) <br />
-Environment: macOS / Java 17 / Node.js 18 / Spring Boot 3.2
+Environment: macOS / React / Java 17 / Spring Boot 3.2
 > 💡 본 프로젝트는 인증 로직의 기본 학습용 예제입니다. <br />
 실서비스에서는 키 관리, 토큰 만료 정책, HTTPS 환경 설정 등이 추가되어야 합니다.
 
