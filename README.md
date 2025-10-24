@@ -57,8 +57,7 @@
 
 [스프링부트 구글 소셜 로그인 구현하기](https://velog.io/@bdd14club/%EB%B0%B1%EC%97%94%EB%93%9C-2.-%EA%B5%AC%EA%B8%80-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0) <br/>
 [백엔드에서 소셜 로그인을 구현해보자(총정리)](https://velog.io/@hsh111366/Spring-Security-%EB%B0%B1%EC%97%94%EB%93%9C%EC%97%90%EC%84%9C-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%90%EC%84%9C-%ED%95%B4%EC%95%BC-%ED%95%A0-%EC%9D%BC-%EC%B4%9D%EC%A0%95%EB%A6%AC-feat.-OAuth2.0) <br/>
-[백엔드 소셜 로그인을 구현해보자](https://velog.io/@juuuunny/%EB%B0%B1%EC%97%94%EB%93%9C%EC%97%90%EC%84%9C-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8%EC%9D%84-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EC%9E%90-%EC%B9%B4%EC%B9%B4%EC%98%A4-%EA%B5%AC%EA%B8%80-%EB%84%A4%EC%9D%B4%EB%B2%84-3%EC%A2%85-%EC%A0%81%EC%9A%A9%EA%B8%B0#35-%EC%9D%B8%EC%A6%9D-%EC%84%B1%EA%B3%B5-%EC%8B%9C) <br/>
-[스프링+리액트 로그인 구현](https://www.youtube.com/watch?v=nMSFHreQdbU)
+[백엔드 소셜 로그인을 구현해보자](https://velog.io/@juuuunny/%EB%B0%B1%EC%97%94%EB%93%9C%EC%97%90%EC%84%9C-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8%EC%9D%84-%EA%B5%AC%ED%98%84%ED%95%B4%EB%B3%B4%EC%9E%90-%EC%B9%B4%EC%B9%B4%EC%98%A4-%EA%B5%AC%EA%B8%80-%EB%84%A4%EC%9D%B4%EB%B2%84-3%EC%A2%85-%EC%A0%81%EC%9A%A9%EA%B8%B0#35-%EC%9D%B8%EC%A6%9D-%EC%84%B1%EA%B3%B5-%EC%8B%9C)
 
 <br />
 
