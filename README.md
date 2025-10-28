@@ -1,5 +1,6 @@
 구현 위주로 진행을 하다가 막히는 개념들이 생겨서 개념들부터 정리해서 차근차근 다시 개발하도록 하겠습니다..
-1. [Security 개념 공부](https://www.youtube.com/playlist?list=PLJkjrxxiBSFCFM0pjDwm6F98veieD0MER)
+1. [Security 개념 공부](https://www.youtube.com/playlist?list=PLJkjrxxiBSFCFM0pjDwm6F98veieD0MER) <br/>
+[( 노션으로 개념 정리중입니다... )](https://www.notion.so/Spring-Security-296a00329dd08018ade5fda154caa7a0?source=copy_link)
 2. [JWT 개념 공부](https://www.youtube.com/playlist?list=PLJkjrxxiBSFCcOjy0AAVGNtIa08VLk1EJ)
    - [JWT 심화](https://www.youtube.com/watch?v=SxfweG-F6JM&list=PLJkjrxxiBSFATow4HY2qr5wLvXM6Rg-BM)
 3. OAuth2 개념 공부 (두 영상의 차이를 모르겠어서 일단 구분해서 기록)
